@@ -34,7 +34,7 @@ flowchart TD
 ## Detailed Comparison Table
 
 | Feature | `pip install strix-agent` | `curl ... | bash` | `git clone + poetry` |
-|---------|--------------------------|----------------------|----------------------|
+|---------|--------------------------|----------------------|----------------------|----------------------|
 | **Ease of Setup** | ⭐⭐⭐⭐⭐ Easy | ⭐⭐⭐⭐ Easy | ⭐⭐⭐ Manual |
 | **Version** | Latest PyPI release | Latest release | **Latest commit (unreleased)** |
 | **Code Access** | ❌ No | ❌ No | ✅ Yes |

@@ -48,8 +48,8 @@ flowchart TB
         F4 -->|Only does| F4C[NoSQLi]
     end
 
-    style FORK fill:#c8e6c9,stroke:#388e3c
-    style OFFICIAL fill:#e3f2fd,stroke:#1976d2
+    style FORK fill:#c8e6c,stroke:#388e3a
+    style OFFICIAL fill:#e3f2f,stroke:#1976d2
 ```
 
 ### Specialized Agent Types in Fork
@@ -145,7 +145,7 @@ flowchart LR
         P8 -->|Feed| P2
     end
     
-    style PARALLEL fill:#c8e6c9,stroke:#388e3c
+    style PARALLEL fill:#d8e6c9,stroke:#388e3c
 ```
 
 **Official Strix execution:**
@@ -200,11 +200,8 @@ flowchart TB
         C6 -->|Assigns| C3
         C6 -->|Assigns| C4
         
-        note right of C5
-            Orchestrator is bottleneck
-            Sequential decision making
-            Agents work in isolation
-        end
+        C7[📝 Orchestrator is bottleneck<br/>Sequential decision making<br/>Agents work in isolation]
+        style C7 fill:#fff9c4,stroke:#f9a825
     end
 
     subgraph COLLABORATIVE["🌐 Fork: Collaborative Network"]
@@ -220,11 +217,8 @@ flowchart TB
         F2 <-.->|Direct| F3
         F3 <-.->|Direct| F4
         
-        note right of F5
-            Agents read/write to shared graph
-            Real-time discovery propagation
-            Self-organizing workflows
-        end
+        F8[📝 Agents read/write to shared graph<br/>Real-time discovery propagation<br/>Self-organizing workflows]
+        style F8 fill:#fff9c4,stroke:#f9a825
     end
 
     style COLLABORATIVE fill:#c8e6c9,stroke:#388e3c

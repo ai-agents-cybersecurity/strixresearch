@@ -1,7 +1,5 @@
 # Strix Screenshots Capability
 
-Based on my research, here's what I found about Strix's screenshot capabilities:
-
 ---
 
 ## Current Screenshot Support

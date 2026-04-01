@@ -753,7 +753,7 @@ flowchart TD
     
     Q1 -->|"Yes - Critical finding"| C1["🔴 IMMEDIATE REVIEW"]
     C1 --> C2[Check in Caido]
-    C2 --> C3{Valid?"}
+    C2 --> C3{Valid?}
     C3 -->|Yes| C4[Validate & escalate]
     C3 -->|No| C5[Mark false positive]
     

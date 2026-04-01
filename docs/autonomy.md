@@ -1,7 +1,5 @@
 # Full Autonomous Mode in Strix
 
-**Great question!** Based on my thorough analysis of the Strix codebase and documentation, here's what I found:
-
 ---
 
 ## TL;DR: Strix IS Already Fully Autonomous! 🎯

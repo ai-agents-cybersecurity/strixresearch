@@ -1,7 +1,5 @@
 # Threat-Led Penetration Testing (TLPT) with Strix
 
-Great question! TLPT requires feeding threat intelligence into the testing process. Let me research what Strix supports and provide you with a comprehensive solution.
-
 ---
 
 ## Current Strix Capabilities

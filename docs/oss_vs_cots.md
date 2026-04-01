@@ -1,11 +1,11 @@
 ## Open Source vs Commercial Strix Versions
 
-Based on the docs and research, here's the key breakdown:
+---
 
 ### Open Source (CLI) - Free
 - **Apache 2.0 License** - fully open source
-- Requires your own Docker, Python 3.12+, and **your own LLM API key**
-- You pay for your own LLM token costs separately (~$0.50-$20/scan depending on model and depth)
+- Requires your own Docker, Python 3.12+, and **your own API key**
+- You pay for your own token costs separately (~$0.50-$20/scan depending on model and depth)
 - Local results saved to `strix_runs/`
 - Full security toolkit: HTTP proxy, browser automation, terminal, Python runtime
 - CI/CD integration via GitHub Actions
