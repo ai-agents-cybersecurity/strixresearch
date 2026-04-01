@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search - SecureBank</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏦 SecureBank</h1>
+            <nav>
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                <a href="{{ url_for('transfer') }}">Transfer</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </nav>
+        </header>
+        
+        <div class="search-container">
+            <h2>Search Transactions</h2>
+            
+            <form method="GET" action="{{ url_for('search') }}">
+                <input type="text" name="q" value="{{ query }}" placeholder="Search by description...">
+                <button type="submit">Search</button>
+            </form>
+            
+            <!-- VULNERABILITY: Reflected XSS - query is output without escaping -->
+            {% if query %}
+            <div class="search-results">
+                <h3>Results for: {{ query|safe }}</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Amount</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for result in results %}
+                        <tr>
+                            <td>{{ result.created_at }}</td>
+                            <td>{{ result.from_account }}</td>
+                            <td>{{ result.to_account }}</td>
+                            <td>${{ "%.2f" % result.amount }}</td>
+                            <td>{{ result.description }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

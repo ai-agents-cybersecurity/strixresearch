@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - SecureBank</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏦 SecureBank</h1>
+            <nav>
+                <a href="{{ url_for('index') }}">Home</a>
+            </nav>
+        </header>
+        
+        <div class="form-container">
+            <h2>Login to Your Account</h2>
+            
+            {% if error %}
+            <div class="alert alert-error">{{ error }}</div>
+            {% endif %}
+            
+            <form method="POST" action="{{ url_for('login') }}">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                
+                <!-- Hidden parameter for login type (legacy/secure) -->
+                <input type="hidden" name="login_type" value="legacy">
+                
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+            
+            <div class="links">
+                <a href="{{ url_for('forgot_password') }}">Forgot Password?</a>
+                <span>|</span>
+                <a href="{{ url_for('register') }}">Create Account</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

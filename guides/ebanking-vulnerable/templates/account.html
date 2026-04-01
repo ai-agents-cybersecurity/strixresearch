@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Details - SecureBank</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏦 SecureBank</h1>
+            <nav>
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                <a href="{{ url_for('transfer') }}">Transfer</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </nav>
+        </header>
+        
+        <div class="account-detail">
+            <h2>Account Details</h2>
+            
+            <div class="account-info">
+                <p><strong>Account Number:</strong> {{ account.account_number }}</p>
+                <p><strong>Type:</strong> {{ account.account_type }}</p>
+                <p><strong>Balance:</strong> ${{ "%.2f" % account.balance }}</p>
+                <p><strong>Opened:</strong> {{ account.created_at }}</p>
+            </div>
+            
+            <h3>Transaction History</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for trans in transactions %}
+                    <tr>
+                        <td>{{ trans.created_at }}</td>
+                        <td>{{ trans.from_acc_num }}</td>
+                        <td>{{ trans.to_acc_num }}</td>
+                        <td>${{ "%.2f" % trans.amount }}</td>
+                        <td>{{ trans.description }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+            <a href="{{ url_for('dashboard') }}" class="btn">Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>

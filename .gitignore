@@ -1,0 +1,127 @@
+# =============================================================================
+# STRIX RESEARCH PROJECT - GITIGNORE
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Operating System Files
+# -----------------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# -----------------------------------------------------------------------------
+# Editor & IDE Files
+# -----------------------------------------------------------------------------
+*.swp
+*.swo
+*~
+.vim/
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# -----------------------------------------------------------------------------
+# Environment & Secrets (DO NOT COMMIT)
+# -----------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+credentials/
+
+# -----------------------------------------------------------------------------
+# Python Artifacts (if scripts added later)
+# -----------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# -----------------------------------------------------------------------------
+# DGX Spark specific scripts (local setup files)
+scripts_dgx/
+# -----------------------------------------------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# -----------------------------------------------------------------------------
+# Strix-Specific: Generated Output (DO NOT COMMIT)
+# -----------------------------------------------------------------------------
+strix_runs/
+phase1_source_findings/
+phase2_validated_findings/
+phase3_uat_findings/
+phase4_prod_findings/
+final_report/
+findings/
+*.log
+pentest_output/
+test_results/
+
+# -----------------------------------------------------------------------------
+# Temporary Files
+# -----------------------------------------------------------------------------
+tmp/
+temp/
+*.tmp
+*.temp
+.cache/
+
+# -----------------------------------------------------------------------------
+# Archives
+# -----------------------------------------------------------------------------
+*.zip
+*.tar.gz
+*.tar.bz2
+*.rar
+
+# -----------------------------------------------------------------------------
+# Documentation Build Artifacts (if using MkDocs, etc.)
+# -----------------------------------------------------------------------------
+site/
+_build/
+
+# -----------------------------------------------------------------------------
+# Research Project Specific
+# -----------------------------------------------------------------------------
+# Keep templates and examples, ignore generated configs with real data
+pentest-config-*.yaml
+!pentest-config-example.yaml
+full-pentest-instructions-*.md
+!full-pentest-instructions-template.md
+
+# -----------------------------------------------------------------------------
+# Sunshine Remote Desktop (Runtime files only, keep docs)
+# -----------------------------------------------------------------------------
+# Ignore Sunshine runtime/cache files but keep documentation
+sunshine/*.conf
+sunshine/*.log
+sunshine/credentials*
+sunshine/certs/
+sunshine/.cache/

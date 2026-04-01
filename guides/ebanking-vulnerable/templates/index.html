@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureBank - Online Banking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏦 SecureBank</h1>
+            <p>Your Trusted Financial Partner</p>
+        </header>
+        
+        <div class="hero">
+            <h2>Welcome to SecureBank</h2>
+            <p>Experience secure and convenient online banking</p>
+            
+            <div class="cta-buttons">
+                <a href="{{ url_for('login') }}" class="btn btn-primary">Login</a>
+                <a href="{{ url_for('register') }}" class="btn btn-secondary">Open Account</a>
+            </div>
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>🔒 Secure</h3>
+                <p>State-of-the-art security</p>
+            </div>
+            <div class="feature">
+                <h3>⚡ Fast</h3>
+                <p>Instant transfers</p>
+            </div>
+            <div class="feature">
+                <h3>📱 Mobile</h3>
+                <p>Bank on the go</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>&copy; 2024 SecureBank. All rights reserved. | 
+               <a href="{{ url_for('debug_info') }}">Debug</a> |
+               <a href="{{ url_for('api_users') }}">API</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

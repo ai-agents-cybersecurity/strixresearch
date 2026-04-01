@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - SecureBank</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏦 SecureBank</h1>
+            <nav>
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                <a href="{{ url_for('transfer') }}">Transfer</a>
+                <a href="{{ url_for('search') }}">Search</a>
+                {% if session.get('is_admin') %}
+                <a href="{{ url_for('admin') }}">Admin</a>
+                {% endif %}
+                <a href="{{ url_for('logout') }}">Logout ({{ session.username }})</a>
+            </nav>
+        </header>
+        
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alerts">
+            {% for message in messages %}
+            <div class="alert alert-success">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+        
+        <div class="dashboard">
+            <h2>Welcome, {{ user.full_name }}!</h2>
+            
+            <div class="dashboard-grid">
+                <div class="panel">
+                    <h3>Your Accounts</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Account Number</th>
+                                <th>Type</th>
+                                <th>Balance</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for account in accounts %}
+                            <tr>
+                                <td>{{ account.account_number }}</td>
+                                <td>{{ account.account_type }}</td>
+                                <td>${{ "%.2f" % account.balance }}</td>
+                                <td><a href="{{ url_for('account_detail', account_id=account.id) }}">View</a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="total-balance">
+                        <strong>Total Balance: ${{ "%.2f" % user.balance }}</strong>
+                    </div>
+                </div>
+                
+                <div class="panel">
+                    <h3>Recent Transactions</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>From/To</th>
+                                <th>Amount</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for trans in transactions %}
+                            <tr>
+                                <td>{{ trans.created_at }}</td>
+                                <td>
+                                    {% if trans.from_account == accounts[0].id %}
+                                    To: {{ trans.to_acc_num }}
+                                    {% else %}
+                                    From: {{ trans.from_acc_num }}
+                                    {% endif %}
+                                </td>
+                                <td class="{% if trans.from_account == accounts[0].id %}negative{% else %}positive{% endif %}">
+                                    {% if trans.from_account == accounts[0].id %}-
+                                    {% else %}+
+                                    {% endif %}
+                                    ${{ "%.2f" % trans.amount }}
+                                </td>
+                                <td>{{ trans.description }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="panel">
+                <h3>Messages</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>From</th>
+                            <th>Subject</th>
+                            <th>Date</th>
+                            <th>Content</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for message in messages %}
+                        <tr>
+                            <td>{{ message.from_user }}</td>
+                            <!-- VULNERABILITY: Stored XSS - content not escaped -->
+                            <td>{{ message.subject|safe }}</td>
+                            <td>{{ message.created_at }}</td>
+                            <td>{{ message.content|safe }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                
+                <h4>Send Message</h4>
+                <form method="POST" action="{{ url_for('send_message') }}">
+                    <input type="text" name="to_user" placeholder="Username" required>
+                    <input type="text" name="subject" placeholder="Subject" required>
+                    <textarea name="content" placeholder="Message (HTML allowed)" required></textarea>
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
