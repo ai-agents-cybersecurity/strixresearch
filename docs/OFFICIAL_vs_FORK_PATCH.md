@@ -20,7 +20,7 @@ The real differences fall into 5 areas:
 
 **This is the biggest difference.** Both versions share the same `agents_graph` tool code, but the system prompt tells the LLM *how aggressively to use it*.
 
-**File:** `strix/agents/StrixAgent/system_prompt.jinja` 
+**File:** `strix/agents/StrixAgent/system_prompt.jinja`
 
 ### Official — Coordinator model
 ```
@@ -75,7 +75,7 @@ The fork's prompt drives significantly more iterations and deeper exploration pe
 
 ## 2. Scope Enforcement (Official only)
 
-**File:** `strix/agents/StrixAgent/strix_agent.py` 
+**File:** `strix/agents/StrixAgent/strix_agent.py`
 
 The official version adds `_build_system_scope_context()` — a method that builds a structured scope object from scan targets and injects it into the LLM system prompt at runtime:
 
@@ -155,8 +155,8 @@ This calls `LLM.add_skills()` which appends skills to `_active_skills`, reloads 
 The fork has no `load_skill` tool. Skills are fixed at agent creation time and cannot change during execution.
 
 **Official also ships 9 extra tooling skills** (fork has none):
-- `ffuf.md`, `httpx.md`, `katana.md`, `naabu.md`, `nmap.md` 
-- `nuclei.md`, `semgrep.md`, `sqlmap.md`, `subfinder.md` 
+- `ffuf.md`, `httpx.md`, `katana.md`, `naabu.md`, `nmap.md`
+- `nuclei.md`, `semgrep.md`, `sqlmap.md`, `subfinder.md`
 
 These give agents precise usage guides for specific security tools, loadable on-demand.
 
@@ -164,7 +164,7 @@ These give agents precise usage guides for specific security tools, loadable on-
 
 ## 4. Tool Registration Architecture
 
-**File:** `strix/tools/registry.py` 
+**File:** `strix/tools/registry.py`
 
 ### Official — Conditional registration at decorator level
 ```python
@@ -209,7 +209,7 @@ else:
 
 ## 5. LLM Retry Backoff
 
-**File:** `strix/llm/llm.py` 
+**File:** `strix/llm/llm.py`
 
 ```python
 # Official
